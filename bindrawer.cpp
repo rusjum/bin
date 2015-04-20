@@ -6,7 +6,7 @@ BinDrawer::BinDrawer()
 
 BinDrawer::BinDrawer(qreal init_x, qreal init_y)
 {
-    setPos(mapToParent(init_x, init_y));
+    setPos(mapToScene(init_x, init_y));
 }
 
 BinDrawer::~BinDrawer()

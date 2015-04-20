@@ -16,11 +16,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     bin.cpp \
     package.cpp \
-    bindrawer.cpp
+    bindrawer.cpp \
+    packagedrawer.cpp
 
 HEADERS  += mainwindow.h \
     bin.h \
     package.h \
-    bindrawer.h
+    bindrawer.h \
+    packagedrawer.h
 
 FORMS    += mainwindow.ui

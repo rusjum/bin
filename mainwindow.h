@@ -21,7 +21,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *scene;
+    QGraphicsScene *binScene;
+    QGraphicsScene *packageScene;
     QTimer *timer;
 };
 
