@@ -10,6 +10,7 @@ class BinDrawer : public QGraphicsItem
 {
 public:
     BinDrawer();
+    BinDrawer(qreal init_x, qreal init_y);
     ~BinDrawer();
     void advance(int phase);
     QRectF boundingRect() const;

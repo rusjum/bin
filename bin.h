@@ -6,6 +6,7 @@
 class Bin
 {
 public:
+
     Bin();
     Bin(double height, double width, int  id);
     ~Bin();
