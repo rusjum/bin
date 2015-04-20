@@ -7,8 +7,6 @@ BinDrawer::BinDrawer()
 BinDrawer::BinDrawer(qreal init_x, qreal init_y)
 {
     setPos(mapToParent(init_x, init_y));
-
-
 }
 
 BinDrawer::~BinDrawer()
@@ -20,11 +18,15 @@ BinDrawer::~BinDrawer()
 
 void BinDrawer::advance(int phase)
 {
-    if (phase % 2)
-        this->scene()->clear();
-    else
-        this->scene()->addItem(this);
+    if (!phase) return;
 
+    int size = this->bin->getPackages()->size();
+    int pos_y = size / 10;
+    int pos_x = size % 10;
+    if (size < 100) {
+        Package *p = new Package(10,10,10 * pos_y,10 * pos_x ,size);
+        this->bin->getPackages()->append(p);
+    }
 }
 
 QRectF BinDrawer::boundingRect() const
@@ -55,9 +57,27 @@ void BinDrawer::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
     QRectF rec = boundingRect();
     setPos(this->scene()->width()*0.2, this->scene()->height()-rec.height() - 10);
-    QBrush brush(Qt::red);
+    QBrush brush(Qt::green);
     painter->setPen(QPen(Qt::red));
+
     painter->drawRect(rec);
+
+
+    for (int i = 0; i < this->bin->getPackages()->size(); ++i) {
+        Package *p = this->bin->getPackages()->at(i);
+        qreal width = p->getDirection() == 0 ? p->getWidth():p->getHeight();
+        qreal height = p->getDirection() == 1 ? p->getWidth():p->getHeight();
+        width = width/this->bin->getWidth() * rec.width();
+        height = height/this->bin->getHeight() * rec.height();
+        qreal pos_x = p->getPosX()/this->bin->getHeight() * rec.height();
+        qreal pos_y = p->getPosY()/this->bin->getWidth() * rec.width();
+        QRectF package = QRectF(pos_y, rec.height() - height - pos_x, width, height);
+
+        painter->fillRect(package, brush);
+        painter->setPen(QPen(Qt::black));
+        painter->drawRect(package);
+    }
+    //qreal
 }
 
 void BinDrawer::setBin(Bin *bin)

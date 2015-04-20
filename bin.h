@@ -14,7 +14,7 @@ public:
     void setWidth(double width);
     double getHeight();
     void setHeight(double height);
-    QVector<Package*> getPackages();
+    QVector<Package*>* getPackages();
 
 private:
     double width;

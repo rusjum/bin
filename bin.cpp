@@ -38,3 +38,8 @@ void Bin::setHeight(double height)
     this->height = height;
 }
 
+QVector<Package *>* Bin::getPackages()
+{
+    return this->packages;
+}
+

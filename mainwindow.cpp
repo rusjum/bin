@@ -17,7 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
     drawer->setBin(bin);
     scene->addItem(drawer);
     QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), scene, SLOT(update()));
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+
     timer->start(1000);
 }
 
